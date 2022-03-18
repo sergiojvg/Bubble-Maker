@@ -11,7 +11,7 @@ import getopt, sys
 class submarine:
     def __init__(self):
         LEFT_FORWARD = 16
-        LEFT_BACKWARD = 16
+        LEFT_BACKWARD = 18
         self.pins = {
             "leftForward": LEFT_FORWARD,
             "leftBackward": LEFT_BACKWARD
@@ -46,6 +46,20 @@ class submarine:
     def stopTurnRight(self):
         self.setPin(pinName="leftForward",value=False)
 
+    def startTurnLeft(self):
+        self.setPin(pinName="leftBackward",value=True)
+
+    def stopTurnLeft(self):
+        self.setPin(pinName="leftBackward",value=False)
+
+    def startForward(self):
+        self.setPin(pinName="leftForward",value=True)
+        self.setPin(pinName="leftBackward",value=True)
+
+    def stopForward(self):
+        self.setPin(pinName="leftForward",value=False)
+        self.setPin(pinName="leftBackward",value=False)
+
     def setPin(self, pinName, value):
         if dry_run == False:
             GPIO.output(self.pins[pinName], value)
@@ -66,6 +80,10 @@ def key_pressed_handler(key):
         match key:
             case Key.esc:
                 return False
+            case Key.up:
+                bubbles.startForward()
+            case Key.left:
+                bubbles.startTurnLeft()
             case Key.right:
                 bubbles.startTurnRight()
         bubbles.printStatus()
@@ -73,6 +91,10 @@ def key_pressed_handler(key):
 
 def key_released_handler(key):
     match key:
+        case Key.up:
+            bubbles.stopForward()
+        case Key.left:
+            bubbles.stopTurnLeft()
         case Key.right:
             bubbles.stopTurnRight()
 
