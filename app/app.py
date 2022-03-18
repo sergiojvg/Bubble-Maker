@@ -103,13 +103,21 @@ def key_pressed_handler(key):
 
 
 def key_released_handler(key):
-    match key:
-        case Key.up:
-            bubbles.stopForward()
-        case Key.left:
-            bubbles.stopTurnLeft()
-        case Key.right:
-            bubbles.stopTurnRight()
+    if key == Key.esc:
+        return False
+    elif key == Key.up:
+        bubbles.stopForward()
+    elif key == Key.left:
+        bubbles.stopTurnLeft()
+    elif key == Key.right:
+        bubbles.stopTurnRight()
+    #match key:
+    #    case Key.up:
+    #        bubbles.stopForward()
+    #    case Key.left:
+    #        bubbles.stopTurnLeft()
+    #    case Key.right:
+    #        bubbles.stopTurnRight()
 
 if __name__ == "__main__":
     global dry_run
