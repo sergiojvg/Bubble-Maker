@@ -70,22 +70,35 @@ class submarine:
 
 def key_pressed_handler(key):
     if hasattr(key, 'char'):
-        match key.char:
-            case "q":
-                return False
-            case "i":
-                bubbles.printConfiguration()
-                bubbles.printStatus()
+        if key.char == "q":
+            return False
+        elif key.char == "i":
+            bubbles.printConfiguration()
+            bubbles.printStatus()
+        #match key.char:
+        #    case "q":
+        #        return False
+        #    case "i":
+        #        bubbles.printConfiguration()
+        #        bubbles.printStatus()
     else:
-        match key:
-            case Key.esc:
-                return False
-            case Key.up:
-                bubbles.startForward()
-            case Key.left:
-                bubbles.startTurnLeft()
-            case Key.right:
-                bubbles.startTurnRight()
+        if key == Key.esc:
+            return False
+        elif key == Key.up:
+            bubbles.startForward()
+        elif key == Key.left:
+            bubbles.startTurnLeft()
+        elif key == Key.right:
+            bubbles.startTurnRight()
+        #match key:
+        #    case Key.esc:
+        #        return False
+        #    case Key.up:
+        #        bubbles.startForward()
+        #    case Key.left:
+        #        bubbles.startTurnLeft()
+        #    case Key.right:
+        #        bubbles.startTurnRight()
         bubbles.printStatus()
 
 
