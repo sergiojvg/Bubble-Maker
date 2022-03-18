@@ -87,8 +87,20 @@ def key_pressed_sshkeyboard(key):
     elif key == "r":
         bubbles.reset()
     elif key == "q":
-        return False
+        #exit(0)
+        return
+        #return False
     bubbles.printStatus()
+
+def key_released_sshkeyboard(key):
+    if key == "up":
+        bubbles.stopForward()
+    elif key == "left":
+        bubbles.stopTurnLeft()
+    elif key == "right":
+        bubbles.stopTurnRight()
+    bubbles.printStatus()
+
 
 #def key_pressed_handler(key):
 #    if hasattr(key, 'char'):
@@ -148,7 +160,9 @@ if __name__ == "__main__":
     bubbles = submarine()
     bubbles.printConfiguration()
 
-    listen_keyboard(on_press=key_pressed_sshkeyboard)
+    listen_keyboard(
+        on_press=key_pressed_sshkeyboard,
+        on_release=key_released_sshkeyboard)
     
     #with Listener(
     #        on_press = key_pressed_handler,
