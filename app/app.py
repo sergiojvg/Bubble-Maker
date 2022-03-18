@@ -21,7 +21,7 @@ class submarine:
 
         if dry_run == False:
             GPIO.setmode(GPIO.BOARD)
-            for pin in pins.values():
+            for pin in self.pins.values():
                 GPIO.setup(pin, GPIO.OUT)
                 #GPIO.output(pin, False)
         else:
