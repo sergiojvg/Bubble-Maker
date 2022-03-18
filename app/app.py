@@ -86,6 +86,8 @@ def key_pressed_sshkeyboard(key):
         bubbles.printStatus()
     elif key == "r":
         bubbles.reset()
+    elif key == "q":
+        return False
     bubbles.printStatus()
 
 #def key_pressed_handler(key):
